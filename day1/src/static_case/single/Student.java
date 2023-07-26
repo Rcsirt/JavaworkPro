@@ -1,4 +1,4 @@
-package single;
+package static_case.single;
 
 //单例设计模式示例//
 //单例设计模式:确保一个类只有一个对象

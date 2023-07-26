@@ -1,8 +1,8 @@
-package codetool;
+package static_case.codetool;
 
 import java.util.Random;
 import java.util.Scanner;
-
+//生成验证码的工具类
 public class CodeTool {
     private CodeTool() {
     }
