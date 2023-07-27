@@ -3,6 +3,7 @@ package homework.bank;
 //活期账户
 public class CurrentAccount extends BankAccount{
     @Override
+    //账户信息
     public void getAccountIn() {
         System.out.println("姓名: " + getName());
         System.out.println("账号: " + getAccount());
