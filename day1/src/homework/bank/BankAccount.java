@@ -37,9 +37,25 @@ public class BankAccount {
         this.balance = balance;
     }
 
+
+    //账户信息
     public void getAccountIn() {
         System.out.println("姓名: " + getName());
         System.out.println("账号: " + getAccount());
         System.out.println("存款: " + getBalance());
+    }
+
+    public void withdrawal(double money) {
+        if (getBalance() - money >= 0) {
+            setBalance(getBalance() - money);
+            System.out.println("取款成功，当前余额: " + getBalance());
+            return;
+        }
+        System.out.println("余额不足无法取款");
+    }
+
+    public void deposit(double money) {
+        setBalance(money + getBalance());
+        System.out.println("存款成功");
     }
 }

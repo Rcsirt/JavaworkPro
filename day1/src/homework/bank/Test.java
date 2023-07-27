@@ -13,18 +13,24 @@ public class Test {
         bankAccount.setName("lez");
         bankAccount.setAccount("123456");
         bankAccount.setBalance(4000);
+        bankAccount.withdrawal(2000);
+        bankAccount.deposit(500);
         bankAccount.getAccountIn();
         System.out.println();
         CurrentAccount currentAccount = new CurrentAccount();
         currentAccount.setName("qio");
         currentAccount.setAccount("456789");
         currentAccount.setBalance(5000);
+        currentAccount.withdrawal(2000);
+        currentAccount.deposit(500);
         currentAccount.getAccountIn();
         System.out.println();
         SavingsAccount savingsAccount = new SavingsAccount();
         savingsAccount.setName("kun");
         savingsAccount.setAccount("192334");
         savingsAccount.setBalance(6000);
+        savingsAccount.withdrawal(2000);
+        savingsAccount.deposit(500);
         savingsAccount.getAccountIn();
         savingsAccount.setBalance(2000);
 
