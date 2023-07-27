@@ -45,6 +45,7 @@ public class BankAccount {
         System.out.println("存款: " + getBalance());
     }
 
+    //取款
     public void withdrawal(double money) {
         if (getBalance() - money >= 0) {
             setBalance(getBalance() - money);
