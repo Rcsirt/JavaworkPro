@@ -45,10 +45,11 @@ public class MainApp {
         Scanner sc = new Scanner(System.in);
         back:
         while (true) {
-            System.out.println("""
+            System.out.print("""
                     欢迎来到黑马数学心算练习系统
+                    (输入 Q 退出系统)
                     请输入用户名:\s
-                    (输入 Q 退出系统)""");
+                    """);
             type = sc.next();
             if (type.equals("Q")){
                 break;
