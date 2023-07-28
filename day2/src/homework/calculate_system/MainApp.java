@@ -13,8 +13,8 @@ public class MainApp {
 
     public static void main(String[] args) {
         //默认的用户
-        Teacher teacher = new Teacher("太乙真人", "123456");
-        Student student = new Student("哪吒", "123456");
+        User teacher = new Teacher("太乙真人", "123456");
+        User student = new Student("哪吒", "123456");
         //默认的题目
         MathTest mathTest = new AddTest();
         MathTest mathTest2 = new SubtractTest();
@@ -50,7 +50,7 @@ public class MainApp {
                     (输入 Q 退出系统)
                     请输入用户名:""");
             type = sc.next();
-            if (type.equals("Q")){
+            if (type.equals("Q")) {
                 break;
             }
             for (User user1 : users) {
@@ -58,19 +58,18 @@ public class MainApp {
                     System.out.print("请输入密码:");
                     String password = sc.next();
                     if (password.equals(user1.getPassword())) {
-                        switch (user1.id) {
-                            case "teacher" -> {
-                                showTeacherUI(sc, (Teacher) user1, topicList);
+                        if (user1 instanceof Teacher) {
+                            showTeacherUI(sc, user1, topicList);
+                            continue back;
+                        }
+                        if (user1 instanceof Student) {
+                            showStudentUI(sc, user1, topicList);
+                            System.out.println("继续登录系统请输入Y，否则退出系统");
+                            type = sc.next();
+                            if (type.equals("Y")) {
                                 continue back;
-                            }
-                            case "student" -> {
-                                showStudentUI(sc, (Student) user1, topicList);
-                                System.out.println("继续登录系统请输入Y，否则退出系统");
-                                type = sc.next();
-                                if (type.equals("Y")) {
-                                    continue back;
-                                } else break back;
-                            }
+                            } else break back;
+
                         }
                     }
                 }
@@ -78,6 +77,7 @@ public class MainApp {
             System.out.println("未找到该用户");
         }
     }
+
 
     //添加题目
     private static void addTest(Scanner sc, ArrayList<MathTest> topicList) {
@@ -134,14 +134,14 @@ public class MainApp {
     private static void deleteTest(Scanner sc, ArrayList<MathTest> topicList) {
         System.out.println("当前题库为:");
         for (int i = 0; i < topicList.size(); i++) {
-            System.out.println("题目" + (i+1) + ": " + topicList.get(i).getQuestion() + "\t\t" +
+            System.out.println("题目" + (i + 1) + ": " + topicList.get(i).getQuestion() + "\t\t" +
                     "参考答案: " + topicList.get(i).calculator());
         }
         System.out.println("请选择要删除的题目");
         int select = sc.nextInt();
-        System.out.println("是否删除题目:"+topicList.get(select - 1).getQuestion()+"\t输入 Y 确定删除,输入其他取消删除操作");
-        if (sc.next().equals("Y")){
-            topicList.remove(select-1);
+        System.out.println("是否删除题目:" + topicList.get(select - 1).getQuestion() + "\t输入 Y 确定删除,输入其他取消删除操作");
+        if (sc.next().equals("Y")) {
+            topicList.remove(select - 1);
             return;
         }
         System.out.println("已取消");
@@ -149,18 +149,18 @@ public class MainApp {
     }
 
     //学生界面
-    private static void showStudentUI(Scanner sc, Student student, ArrayList<MathTest> topicList) {
+    private static void showStudentUI(Scanner sc, User student, ArrayList<MathTest> topicList) {
         System.out.println("欢迎" + student.getName() + "同学进入系统!\n请开始您的答题: ");
         answer(sc, topicList);
     }
 
     //老师界面
-    private static void showTeacherUI(Scanner sc, Teacher teacher, ArrayList<MathTest> topicList) {
+    private static void showTeacherUI(Scanner sc, User teacher, ArrayList<MathTest> topicList) {
         String select;
         do {
             System.out.println("欢迎" + teacher.getName() + "老师进入系统\n当前题库如下:");
             for (int i = 0; i < topicList.size(); i++) {
-                System.out.println("问题" + (i+1) + ": " + topicList.get(i).getQuestion() + "\t\t" +
+                System.out.println("问题" + (i + 1) + ": " + topicList.get(i).getQuestion() + "\t\t" +
                         "参考答案: " + topicList.get(i).calculator());
             }
             System.out.println("是否要编辑题目，需要编辑输入 Y ，输入其他无需修改，并退出登录！");
@@ -213,4 +213,5 @@ public class MainApp {
             select = sc.next();
         } while (select.equals("Y"));
     }
+
 }
