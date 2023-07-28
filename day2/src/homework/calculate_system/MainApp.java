@@ -48,8 +48,7 @@ public class MainApp {
             System.out.print("""
                     欢迎来到黑马数学心算练习系统
                     (输入 Q 退出系统)
-                    请输入用户名:\s
-                    """);
+                    请输入用户名:""");
             type = sc.next();
             if (type.equals("Q")){
                 break;
